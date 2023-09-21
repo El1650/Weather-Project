@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="src/style.css" />
+    <title>Project</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <div class="card-body">
+          <!-- Header Section -->
+          <div class="form">
+            <form class="input-city">
+              <input
+                type="search"
+                class="search-box"
+                placeholder="Enter a city"
+                id="city"
+                autofocus="on"
+                autocomplete="none" />
+              <input type="submit" value="Search" class="btn btn-primary" />
+              <input
+                type="submit"
+                value="Current"
+                id="current"
+                class="btn btn-success" />
+            </form>
+          </div>
+          <!-- Content area -->
+          <div class="content">
+            <h2>Paris</h2>
+            <p id="date-time">Friday 16:25</p>
+            <p><span id="desc">Clear</span></p>
+            <h1>
+              <img src="./img/Icon.png" width="50" alt="sun" />
+              <span id="temp-deg">36</span>
+              <a href="#" class="temp" id="deg-cel">°C</a>
+              <span class="temp" id="line">|</span>
+              <a href="#" class="temp" id="deg-far">°F</a>
+            </h1>
+            <div class="content right">
+              <p>Wind: <span id="wind">10</span>KMPH</p>
+              <p>Humidity: <span id="hum">80</span>%</p>
+            </div>
+          </div>
+          <!-- Temprature of the week -->
+          <div class="weekTemp">
+            <div class="container">
+              <div class="row">
+                <div class="col">
+                  <div class="day day-1">
+                    <p>Sat</p>
+                    <img src="./img/cool.jpeg" alt="cloudy" />
+                    <p>27°</p>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="day day-2">
+                    <p>Sun</p>
+                    <img src="./img/sunn-is.jpg" alt="Sunny-ish" />
+                    <p>35°</p>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="day day-3">
+                    <p>Mon</p>
+                    <img src="./img/moderate.jpeg" alt="Moderate" />
+                    <p>34°</p>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="day day-4">
+                    <p>Tue</p>
+                    <img src="./img/sunn-is.jpg" alt="Sunny-ish" />
+                    <p>33°</p>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="day day-5">
+                    <p>Wed</p>
+                    <img src="./img/cool.jpeg" alt="cloudy" />
+                    <p>30°</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- footer -->
+    <div class="footer">Built By Elena G. Mandefro</div>
+  </body>
+  <script src="src/app.js"></script>
+</html>

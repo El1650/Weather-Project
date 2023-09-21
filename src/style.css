@@ -1,0 +1,89 @@
+.container {
+  margin-top: 20px;
+  font-family: "Poppins", sans-serif;
+  max-width: 750px;
+}
+
+.form .search-box {
+  display: inline;
+  width: 70%;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid #dee2e6;
+  padding: 15px;
+  margin: 15px 0;
+  transition: all 200 ease-in-out;
+}
+
+h2,
+#desc {
+  text-transform: capitalize;
+}
+
+.content h2 {
+  color: #4b4b4b;
+}
+
+.content h1 {
+  font-size: 64px;
+  font-weight: 400;
+  margin-top: 15px;
+}
+
+.content .temp {
+  font-size: 20px;
+  position: absolute;
+  cursor: default;
+}
+
+.content #deg-cel {
+  left: 23%;
+}
+
+.content #deg-far {
+  left: 28%;
+}
+
+.content #line {
+  font-size: 25px;
+  left: 26.6%;
+  top: 180px;
+}
+
+.content a {
+  text-decoration: none;
+}
+.content a:hover {
+  text-decoration: underline;
+  color: #1ab5ed;
+}
+.content p,
+a {
+  color: #7c7a7a;
+  line-height: 0.7;
+}
+
+.content .right {
+  position: relative;
+  left: 70%;
+  top: -80px;
+}
+
+.weekTemp p {
+  color: #7c7a7a;
+  position: relative;
+  left: 40px;
+}
+
+.weekTemp .day img {
+  width: 100px;
+}
+
+.weekTemp .day-3 p {
+  left: 50px;
+}
+
+.footer {
+  margin: 25px 26%;
+  opacity: 0.85;
+}
