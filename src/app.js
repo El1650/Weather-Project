@@ -13,7 +13,13 @@ form.addEventListener("submit", function (event) {
 let dayTime = document.querySelector("#date-time");
 let now = new Date();
 let hr = now.getHours();
+if (hr < 10) {
+  hr = `0${hr}`;
+}
 let min = now.getMinutes();
+if (min < 10) {
+  min = `0${min}`;
+}
 let d = [
   "Sunday",
   "Monday",
