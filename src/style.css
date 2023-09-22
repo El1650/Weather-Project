@@ -4,15 +4,11 @@
   max-width: 750px;
 }
 
-.form .search-box {
+.form .form-control {
   display: inline;
-  width: 70%;
+  width: 60%;
   height: 40px;
-  border-radius: 5px;
-  border: 1px solid #dee2e6;
-  padding: 15px;
-  margin: 15px 0;
-  transition: all 200 ease-in-out;
+  margin: 15px 5px;
 }
 
 h2,
@@ -34,6 +30,15 @@ h2,
   font-size: 20px;
   position: absolute;
   cursor: default;
+  margin-left: 25px;
+}
+
+.content .temp.active {
+  color: #1ab5ed;
+}
+
+.content .temp.active:hover {
+  color: #009cd5;
 }
 
 .content #deg-cel {
@@ -53,9 +58,9 @@ h2,
 .content a {
   text-decoration: none;
 }
+
 .content a:hover {
-  text-decoration: underline;
-  color: #1ab5ed;
+  color: #656464;
 }
 .content p,
 a {

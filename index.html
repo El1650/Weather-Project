@@ -30,17 +30,15 @@
             <form class="input-city">
               <input
                 type="search"
-                class="search-box"
+                class="form-control shadow-sm"
                 placeholder="Enter a city"
                 id="city"
                 autofocus="on"
                 autocomplete="none" />
               <input type="submit" value="Search" class="btn btn-primary" />
-              <input
-                type="submit"
-                value="Current"
-                id="current"
-                class="btn btn-success" />
+              <button id="current" class="btn btn-success">
+                Current Location
+              </button>
             </form>
           </div>
           <!-- Content area -->
@@ -49,9 +47,9 @@
             <p id="date-time"></p>
             <p><span id="desc"></span></p>
             <h1>
-              <img src="./img/Icon.png" width="50" alt="sun" />
+              <img src="" width="80" alt="" id="icon" />
               <span id="temp-deg"></span>
-              <a href="#" class="temp" id="deg-cel">°C</a>
+              <a href="#" class="temp active" id="deg-cel">°C</a>
               <span class="temp" id="line">|</span>
               <a href="#" class="temp" id="deg-far">°F</a>
             </h1>

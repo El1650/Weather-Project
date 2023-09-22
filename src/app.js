@@ -10,27 +10,28 @@ form.addEventListener("submit", function (event) {
 });
 
 //change date and time
-let dayTime = document.querySelector("#date-time");
-let now = new Date();
-let hr = now.getHours();
-if (hr < 10) {
-  hr = `0${hr}`;
+function setTime(timestamp) {
+  let now = new Date();
+  let hr = now.getHours();
+  if (hr < 10) {
+    hr = `0${hr}`;
+  }
+  let min = now.getMinutes();
+  if (min < 10) {
+    min = `0${min}`;
+  }
+  let d = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let dt = d[now.getDay()];
+  return `${dt} ${hr}:${min}`;
 }
-let min = now.getMinutes();
-if (min < 10) {
-  min = `0${min}`;
-}
-let d = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-let dt = d[now.getDay()];
-dayTime.innerHTML = `${dt} ${hr}:${min}`;
 
 //integrating the API to change the temp
 form.addEventListener("submit", function (event) {
@@ -48,7 +49,18 @@ function searchCity(city) {
 function showTemp(response) {
   let f = document.querySelector("#deg-far");
   let c = document.querySelector("#deg-cel");
+  let cel = Math.round(response.data.main.temp);
+  document.querySelector("#date-time").innerHTML = setTime(response.data.dt);
   document.querySelector("h2").innerHTML = response.data.name;
+  document
+    .querySelector("#icon")
+    .setAttribute(
+      "src",
+      `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    );
+  document
+    .querySelector("#icon")
+    .setAttribute("alt", response.data.weather[0].description);
   document.querySelector("#hum").innerHTML = Math.round(
     response.data.main.humidity
   );
@@ -61,28 +73,32 @@ function showTemp(response) {
   document.querySelector("#temp-deg").innerHTML = Math.round(
     response.data.main.temp
   );
-  let cel = Math.round(response.data.main.temp);
-  let far = Math.round((cel * 9) / 5 + 32);
 
   f.addEventListener("click", function () {
+    c.classList.remove("active");
+    f.classList.add("active");
+    let far = Math.round((cel * 9) / 5 + 32);
     document.querySelector("#temp-deg").innerHTML = `${far}`;
   });
 
   c.addEventListener("click", function () {
+    f.classList.remove("active");
+    c.classList.add("active");
     document.querySelector("#temp-deg").innerHTML = `${cel}`;
   });
 }
 
 //Using Geolocation API to get the GPS coordinates and display the current city and temp
 let curr = document.querySelector("#current");
-curr.addEventListener("submit", function (event) {
+curr.addEventListener("click", function (event) {
   event.preventDefault();
+  // alert("I am pressed");
   navigator.geolocation.getCurrentPosition(searchPos);
 });
 
 function searchPos(position) {
   let apiKeyy = "5f465a71fc837e1674165a8ed3b775f1";
   let apiUrll = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKeyy}&units=metric`;
-  axios.get(apiUrll).then(showTemp);
+  axios.get(`${apiUrll}&appid=${apiKeyy}`).then(showTemp);
 }
-searchCity("New York");
+searchCity("Addis Ababa");
