@@ -74,18 +74,21 @@ a {
   top: -80px;
 }
 
-.weekTemp p {
-  color: #7c7a7a;
-  position: relative;
-  left: 40px;
+.weatherForecast {
+  margin-top: 20px;
+  text-align: center;
+  color: #000;
 }
 
-.weekTemp .day img {
-  width: 100px;
+.weekDate {
+  opacity: 0.6;
 }
 
-.weekTemp .day-3 p {
-  left: 50px;
+.weekTemp {
+  font-size: 13px;
+}
+.weakTempMin {
+  opacity: 0.6;
 }
 
 .footer {

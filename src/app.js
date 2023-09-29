@@ -47,6 +47,7 @@ function searchCity(city) {
 }
 
 function showTemp(response) {
+  forecastTemp();
   let f = document.querySelector("#deg-far");
   let c = document.querySelector("#deg-cel");
   let cel = Math.round(response.data.main.temp);
@@ -92,7 +93,6 @@ function showTemp(response) {
 let curr = document.querySelector("#current");
 curr.addEventListener("click", function (event) {
   event.preventDefault();
-  // alert("I am pressed");
   navigator.geolocation.getCurrentPosition(searchPos);
 });
 
@@ -102,3 +102,26 @@ function searchPos(position) {
   axios.get(`${apiUrll}&appid=${apiKeyy}`).then(showTemp);
 }
 searchCity("Addis Ababa");
+
+//forecast Section
+function forecastTemp() {
+  let forecastElt = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row">`;
+  let days = ["Sat", "Sun", "Mon", "Tue", "Wed", "Thur"];
+  days.forEach(function (day) {
+    forecastHTML += `
+      <div class="col-2">
+      <div class="weekDate">${day}</div>
+      <img
+        src="https://openweathermap.org/img/wn/50d@2x.png"
+        alt=""
+        width="45" />
+      <div class="weekTemp">
+        <span class="weakTempMax">18°</span>&nbsp;
+        <span class="weakTempMin"> 12°</span>
+      </div>
+    </div>`;
+  });
+  forecastHTML += `</div>`;
+  forecastElt.innerHTML = forecastHTML;
+}
