@@ -47,7 +47,6 @@ function searchCity(city) {
 }
 
 function showTemp(response) {
-  forecastTemp();
   let f = document.querySelector("#deg-far");
   let c = document.querySelector("#deg-cel");
   let cel = Math.round(response.data.main.temp);
@@ -87,6 +86,8 @@ function showTemp(response) {
     c.classList.add("active");
     document.querySelector("#temp-deg").innerHTML = `${cel}`;
   });
+
+  getForecast(response.data.coord);
 }
 
 //Using Geolocation API to get the GPS coordinates and display the current city and temp
@@ -97,31 +98,55 @@ curr.addEventListener("click", function (event) {
 });
 
 function searchPos(position) {
-  let apiKeyy = "5f465a71fc837e1674165a8ed3b775f1";
-  let apiUrll = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKeyy}&units=metric`;
-  axios.get(`${apiUrll}&appid=${apiKeyy}`).then(showTemp);
+  apiKey = "5f465a71fc837e1674165a8ed3b775f1";
+  apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showTemp);
 }
 searchCity("Addis Ababa");
 
 //forecast Section
-function forecastTemp() {
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+  return days[day];
+}
+
+function forecastTemp(response) {
+  console.log(response.data.daily);
+  let forecast = response.data.daily;
   let forecastElt = document.querySelector("#forecast");
   let forecastHTML = `<div class="row">`;
-  let days = ["Sat", "Sun", "Mon", "Tue", "Wed", "Thur"];
-  days.forEach(function (day) {
-    forecastHTML += `
+  forecast.forEach(function (forecastDay, index) {
+    console.log(forecastDay);
+    if (index > 0 && index < 7) {
+      forecastHTML += `
       <div class="col-2">
-      <div class="weekDate">${day}</div>
+      <div class="weekDate">${formatDay(forecastDay.time)}</div>
       <img
-        src="https://openweathermap.org/img/wn/50d@2x.png"
+        src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+          forecastDay.condition.icon
+        }.png"
         alt=""
         width="45" />
       <div class="weekTemp">
-        <span class="weakTempMax">18°</span>&nbsp;
-        <span class="weakTempMin"> 12°</span>
+       <span class="weakTempMax">${Math.round(
+         forecastDay.temperature.maximum
+       )}°</span>&nbsp;
+        <span class="weakTempMin">${Math.round(
+          forecastDay.temperature.minimum
+        )}°</span>
       </div>
     </div>`;
+    }
   });
+
   forecastHTML += `</div>`;
   forecastElt.innerHTML = forecastHTML;
+}
+
+function getForecast(coordinates) {
+  apiKey = "b4d8b9ad60f6t00838ba39200o473c14";
+  apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.lon}&lat=${coordinates.lat}&key=${apiKey}`;
+  axios.get(apiUrl).then(forecastTemp);
 }
